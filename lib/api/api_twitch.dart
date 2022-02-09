@@ -28,7 +28,9 @@ class ApiTwitch {
 
     var client = await oauth2.clientCredentialsGrant(tokenEndpoint, identifier, secret, basicAuth: false);
     if (!exists) {
-      file.create();
+      file.create(
+        recursive: true
+      );
     }
     await file.writeAsString(client.credentials.toJson());
 

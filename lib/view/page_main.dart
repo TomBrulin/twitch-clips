@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:twitch_clips/components/component_twitch_gamedisplay.dart';
 import 'package:twitch_clips/components/component_twitch_scaffold.dart';
 import 'package:twitch_clips/components/component_twitch_selectionbar.dart';
+import 'package:twitch_clips/components/component_twitch_streamerdisplay.dart';
 import 'package:twitch_clips/components/component_twitch_text.dart';
 import 'package:twitch_clips/components/component_twitch_titlebar.dart';
 import 'package:twitch_clips/models/device_info.dart';
@@ -53,7 +54,7 @@ class _PageMainState extends State<PageMain> {
       return GameDisplay();
     }
     if(widget.selectedTab == "Streamers") {
-      return Text("StreamersDisplay");
+      return StreamerDisplay();
     }
     return const Text("Error");
   }
