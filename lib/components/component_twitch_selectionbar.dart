@@ -3,16 +3,31 @@ import 'package:twitch_clips/components/component_twitch_text.dart';
 import 'package:twitch_clips/models/device_info.dart';
 import 'package:twitch_clips/resources/app_colors.dart';
 
+import '../view/page_main.dart';
+
 class TwitchSelectionBar extends StatefulWidget {
   final List<String> content;
+  final Function(String) callback;
+  final String? baseSelection;
   String? selectedTab;
-  TwitchSelectionBar(this.content, {Key? key}) : super(key: key);
+  TwitchSelectionBar(this.callback, this.content, {Key? key, this.baseSelection}) : super(key: key) {
+    if(baseSelection != null) {
+      selectedTab = baseSelection;
+    } else {
+      selectedTab = content[0];
+    }
+  }
 
   @override
   _TwitchSelectionBarState createState() => _TwitchSelectionBarState();
 }
 
 class _TwitchSelectionBarState extends State<TwitchSelectionBar> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -42,6 +57,7 @@ class _TwitchSelectionBarState extends State<TwitchSelectionBar> {
           setState(() {
             widget.selectedTab = element;
           });
+          widget.callback(element);
         }
       ));
     }
